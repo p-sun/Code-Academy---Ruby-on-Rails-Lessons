@@ -1,0 +1,28 @@
+<div class="header">
+  <div class="container">
+    <img src="http://s3.amazonaws.com/codecademy-content/courses/learn-rails/img/logo-1tm.svg" width="80">
+    <h1>BokenjiKan</h1>
+  </div>
+</div>
+
+<div class="destination">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+
+        <div>
+          <img src=<%=@destination.image%>>
+          <h2> <%=@destination.name%> </h2>
+          <p> <%=@destination.description %> </p>
+        </div>
+
+        <!-- Recall in routes.rb we have
+          get 'destinations/:id/edit' => 'destinations#edit', as: :edit_destination
+          Rails thus gives us edit_destination_path to make urls like 'destinations/3/edit
+        -->
+        <%= link_to "Edit", edit_destination_path(@destination) %>
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+<div class="header">
+  <div class="container">
+    <img src="http://s3.amazonaws.com/codecademy-content/courses/learn-rails/img/logo-1tm.svg" width="80">
+    <h1>BokenjiKan</h1>
+  </div>
+</div>
+
+<div class="destination">
+  <div class="container">
+    <%= image_tag @destination.image %>
+
+    <!--
+      Use form_for to create a form with the fields of the @destination object.
+      :name and :description directly access the properties of the @destination object.
+    -->
+    <%= form_for(@destination) do |f| %>
+        <div class="field">
+          <%= f.text_field :name %><br>
+          <%= f.text_field :description %>
+        </div>
+
+        <!--
+          Recall in routes.rb, we have:
+            get 'destinations/:id/edit' => 'destinations#edit', as: :edit_destination
+            So, we enter this view with a url like 'destinations/3/edit'
+
+          The "Edit" button sends data via HTTP POST to 'destinations/3', which triggers the update action
+           b/c in routes.rb, we have:
+              patch 'destinations/:id' => 'destinations#update'
+
+           I'm not sure why it sends an HTTP POST to the page 'destinations/3',
+            instead of the current page 'destinations/3/EDIT'
+        -->
+        <div class="actions">
+          <%= f.submit "Edit" %>
+        </div>
+    <% end %>
+
+  </div>
+</div>

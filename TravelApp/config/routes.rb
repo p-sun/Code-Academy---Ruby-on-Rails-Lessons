@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     # Use as: to name the route 'tags/:id' as :tag.
     #   This allows for rails to generate the method tag_path,
     #   which is used in tags/index.erb to generate a url such as 'tags/3', for :id = 3
+
   get 'destinations/:id' => 'destinations#show', as: :destination
   get 'destinations/:id/edit' => 'destinations#edit', as: :edit_destination
   patch 'destinations/:id' => 'destinations#update'
