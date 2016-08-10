@@ -5,12 +5,16 @@ class MessagesController < ApplicationController
 
   # 0) routes.rb directs localhost:3000/messages/new to this method
   # 1) This method creates a new @message
-  # 3) @message is passed to app/view/messages/new.erb. Its form_for ensures @message is not nil.
+  # 3) @message is passed to app/view/messages/new.erb,
+  #     where the form_for creates a form with the fields of the @message object.
+  #     The variables for of @message can be used, but it's not used inside the form_for.
+  #     We probably created this @message b/c form_for must take a non-nil argument.
   # 4) Pressing the "Create" button runs the f.submit method.
   # 5) Running 'f.submit' on messages/new.erb POSTs to /messages & passes :message & :content
   # 6) which according to routes.rb, redirects to 'messages#create' here
-  # 7) Here, 'create' checks that :message exists & :content is allowed through, & it initializes a @message
-  #     I'm not sure why @message was initialized in 'new' and in 'create'
+  # 7) Here, 'create'  action uses the message_params method to safely collect data from the form_for
+  # 8) Using message_params, it initializes & saves a new @message
+
   def new
     @message = Message.new
   end
