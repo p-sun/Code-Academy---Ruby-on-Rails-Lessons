@@ -1,0 +1,25 @@
+<div class="header">
+  <div class="container">
+    <img src="http://s3.amazonaws.com/codecademy-content/courses/learn-rails/img/logo-1tm.svg" width="80">
+    <h1>BokenjiKan</h1>
+  </div>
+</div>
+
+<div class="tags">
+  <div class="container">
+    <div class="cards row">
+
+      <!-- Loop through @tags and display each one with this HTML -->
+      <% @tags.each do |tag| %>
+          <div class="card col-xs-4">
+            <img src=<%=tag.image %> >
+            <h2> <%= tag.title %> </h2>
+            <!-- rails automatically created tag_path, which takes a tag, and generates a URL path. i.e. /tag/12 -->
+            <%= link_to "Learn more", tag_path(tag) %>
+          </div>
+      <% end %>
+
+    </div>
+  </div>
+</div>
+
