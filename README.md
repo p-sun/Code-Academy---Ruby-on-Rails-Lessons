@@ -1,4 +1,4 @@
-# Ruby on Rails Excercises
+# Ruby on Rails Exercises
 Experiment with Ruby on Rails guides locally.
 
 ## How to create Many-to-Many associations.
