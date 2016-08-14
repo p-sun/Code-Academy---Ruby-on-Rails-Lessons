@@ -10,14 +10,11 @@
   <div class="container">
     <h2>Popular Films</h2>
 
-    <!--
-    To do: Loop through movies and display each one with this HTML
-    <div class="movie">
-      movie image goes here
-      <h3> movie title goes here </h3>
-      <p> movie release year goes here </p>
-    </div>
-    -->
+    <% @movies.each do |m| %>
+        <img src=<%=m.image%>></img>
+        <h3><%=m.title%></h3>
+        <p><%=m.release_year%></p>
+    <% end %>
 
   </div>
 </div>
