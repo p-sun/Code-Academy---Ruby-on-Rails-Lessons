@@ -1,4 +1,10 @@
+# By convention, CRUD actions are listed in this order:
+#   index, show, new, edit, create, update and destroy
 class ArticlesController < ApplicationController
+  def index
+    @articles = Article.all
+  end
+
   def show
     @article = Article.find(params[:id])
   end
