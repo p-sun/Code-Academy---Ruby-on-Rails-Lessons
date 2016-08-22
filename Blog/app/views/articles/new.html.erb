@@ -3,7 +3,9 @@
 <!--
 Pass the object :article to this form.
 f is the form builder object
-url: articles_path
+Adding    url: articles_path    sets the POST from the submit button to
+  <form action="/articles", instead of "/articles/new".
+    This path "/articles" is defined under Prefix in    $ rails routes
 -->
 <%= form_for :article, url: articles_path do |f| %><p>
       <%= f.label :title %><br>
