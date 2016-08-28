@@ -22,7 +22,12 @@ class ArticlesController < ApplicationController
     # After we create an Article model, we can save into the db.
     @article = Article.new(article_params)
     @article.save
-    # Redirect user to the show action
+    # save returns a success bool
+
+    # The following creates
+    # <input type="submit" name="commit" value="Save Article" data-disable-with="Save Article" />
+    #   If save was successful, redirect user to '/articles/:id'
+    #   If save was unsuccessful (i.e. no title), user is redirected to '/articles'
     redirect_to @article
   end
 
