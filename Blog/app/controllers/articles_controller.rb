@@ -10,6 +10,8 @@ class ArticlesController < ApplicationController
   end
 
   def new
+    # Init here b/c if @article is nil, @article.errors.any in the new.html.erb would show an error
+    @article = Article.new
   end
 
   def create
@@ -21,14 +23,21 @@ class ArticlesController < ApplicationController
 
     # After we create an Article model, we can save into the db.
     @article = Article.new(article_params)
-    @article.save
-    # save returns a success bool
+    # SAMPLE: @article = #<Article id: nil, title: "some title", text: "some text", created_at: nil, updated_at: nil>
 
-    # The following creates
-    # <input type="submit" name="commit" value="Save Article" data-disable-with="Save Article" />
-    #   If save was successful, redirect user to '/articles/:id'
-    #   If save was unsuccessful (i.e. no title), user is redirected to '/articles'
-    redirect_to @article
+    if @article.save
+      redirect_to @article
+      # SAMPLE: <input type="submit" name="commit" value="Save Article" data-disable-with="Save Article" />
+      #   If save was successful, redirect user to '/articles/:id'
+      #   If save was unsuccessful (:id is nil)  redirect user to '/articles'
+    else
+      render 'new'
+      # render passes @article object back to the new template.
+      #   This rendering is done within the same request as the form submission,
+      #   whereas the redirect_to will tell the browser to issue another request.
+      # Even though new.html.erb is displayed, for some reason user is still redirected '/articles'
+    end
+
   end
 
   # safety feature says that you must whitelist parameters
