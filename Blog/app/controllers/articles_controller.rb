@@ -14,6 +14,10 @@ class ArticlesController < ApplicationController
     @article = Article.new
   end
 
+  def edit
+    @article = Article.find(params[:id])
+  end
+
   def create
     # Uncomment render to inspect :article passed from articles/new.html.erb:
       #   <ActionController::Parameters {"title"=>"some title", "text"=>"some text"} permitted: false>
@@ -34,10 +38,20 @@ class ArticlesController < ApplicationController
       render 'new'
       # render passes @article object back to the new template.
       #   This rendering is done within the same request as the form submission,
-      #   whereas the redirect_to will tell the browser to issue another request.
-      # Even though new.html.erb is displayed, for some reason user is still redirected '/articles'
+      #   whereas the redirect_to will tell the browser to issue another request,
+      #   and new.html.erb will be redisplayed.
     end
 
+  end
+
+  def update
+    @article = Article.find(params[:id])
+
+    if @article.update(article_params)
+      redirect_to @article
+    else
+      render 'edit'
+    end
   end
 
   # safety feature says that you must whitelist parameters
