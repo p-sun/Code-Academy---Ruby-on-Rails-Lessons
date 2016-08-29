@@ -6,37 +6,13 @@ f is the form builder object
 Adding    url: articles_path    sets the POST from the submit button to
   <form action="/articles", instead of "/articles/new".
     This path "/articles" is defined under Prefix in    $ rails routes
+
+Note! Here, we can simplify the form_for b/c  @article is a resource corresponding to a full set of RESTful routes.
+From:     form_for :article, url: articles_path do |f|
+To:       form_for @article do |f|
 -->
-<%= form_for :article, url: articles_path do |f| %>
 
-    <% if @article.errors.any? %>
-        <div id="error_explanation">
-          <h2>
-            <%= pluralize(@article.errors.count, "error") %>
-            prohibited this article from being saved:
-          </h2>
-          <ul>
-            <% @article.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-            <% end %>
-          </ul>
-        </div>
-    <% end %>
-
-    <p>
-      <%= f.label :title %><br>
-      <%= f.text_field :title %>
-    </p>
-
-    <p>
-      <%= f.label :text %><br>
-      <%= f.text_area :text %>
-    </p>
-
-    <p>
-      <%= f.submit %>
-    </p>
-<% end %>
+<%= render 'form' %>
 
 <!-- This creates:    <a href="/articles">Back</a>   -->
 <%= link_to 'Back', articles_path %>
